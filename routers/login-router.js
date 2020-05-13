@@ -12,7 +12,8 @@ router.post('/', async (req, res, next) => {
         const validPassword = await bcrypt.compare(password, user.password);
         if (user && validPassword) {
             const tokenPayload = {
-                userId: user.id
+                userId: user.id,
+                userDept: user.department
             };
             console.log(tokenPayload);
             res.cookie('token', jwt.sign(tokenPayload, process.env.JWT_SECRET));
