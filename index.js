@@ -1,26 +1,14 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const server = express();
 const port = 5000;
 
-// const session = require("express-session");
 const usersRouter = require('./routers/users-router');
 const loginRouter = require('./routers/login-router');
 const registerRouter = require('./routers/register-router');
 
-// const sessionConfig = {
-//     name: "chewy-cookie",
-//     secret: "shhh",
-//     cookie: {
-//         maxAge: 3600 * 1000,
-//         secure: false,
-//         httpOnly: true,
-//     },
-//     resave: false,
-//     saveUninitialized: false,
-// };
-
 server.use(express.json());
-// server.use(session(sessionConfig));
+server.use(cookieParser());
 
 server.get('/', (req, res) => {
     res.json({

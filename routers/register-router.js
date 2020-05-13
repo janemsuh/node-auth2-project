@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/', async (req, res, next) => {
     try {
-        const username = req.body.username;
+        const { username, password, department } = req.body;
         const user = await Users.findBy('username', username).first();
         if (user) {
             return res.status(409).json({

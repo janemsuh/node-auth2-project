@@ -4,8 +4,9 @@ const restricted = require('../middleware/restricted');
 
 const router = express.Router();
 
-router.get('/', restricted('admin'), async (req, res, next) => {
+router.get('/', restricted(), async (req, res, next) => {
     try {
+        console.log(req.cookies.token);
         res.json(await Users.find());
     } catch (err) {
         next(err);

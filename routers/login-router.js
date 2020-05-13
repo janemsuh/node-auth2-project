@@ -12,9 +12,9 @@ router.post('/', async (req, res, next) => {
         const validPassword = await bcrypt.compare(password, user.password);
         if (user && validPassword) {
             const tokenPayload = {
-                userId: user.id,
-                userRole: 'admin'
+                userId: user.id
             };
+            console.log(tokenPayload);
             res.cookie('token', jwt.sign(tokenPayload, process.env.JWT_SECRET));
             res.status(200).json({
                 message: `Logged in: ${user.username}`
